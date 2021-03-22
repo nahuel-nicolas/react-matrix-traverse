@@ -1,0 +1,33 @@
+#matrix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#matrix .row {
+  display: flex;
+}
+
+#matrix .row .node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(31, 197, 197);
+  padding: 15px;
+  margin: 1px;
+  transition: 1s;
+}
+
+#matrix .row .marked {
+  color: rgb(231, 227, 227);
+  transition: 0.5s;
+  background-color: aqua;
+  border: 0.5px solid rgb(0, 255, 76);
+}
+
+#matrix .row .node span {
+  position: absolute;
+  /* font-size: 10px; */
+}
+
+/*# sourceMappingURL=Matrix.css.map */
