@@ -101,12 +101,12 @@ async function spiralTraverse(matrix) {
 }
 
 async function zigzagTraverse(matrix) {
-    const width = matrix[0].length - 1;
+	const width = matrix[0].length - 1;
 	const height = matrix.length - 1;
 	let row = 0;
 	let col = 0;
-    let isGoingDown = true;
-    let currentNum = 0;
+	let isGoingDown = true;
+	let currentNum = 0;
 	while (isNotOutOfRange(row, col, width, height)) {
 		await writeMatrixCell(matrix[row][col], currentNum++);
 		if (isGoingDown) {
