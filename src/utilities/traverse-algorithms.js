@@ -1,14 +1,13 @@
-function sleep(ms=0) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function writeMatrixCell(cellContainer, number) {
-    const cell = cellContainer.current;
-    const cellSpan = cell.querySelector("span");
-    cell.classList.add("marked");
-    await sleep(20);
-    cellSpan.textContent = String(number);
-    sleep(500).then(() => cell.classList.remove("marked"));
+export default async function traverseAlgorithm(traverseType, matrix) {
+    if (traverseType === "vertical") {
+        await verticalTraverse(matrix);
+    } else if (traverseType === "horizontal") {
+        await horizontalTraverse(matrix);
+    } else if (traverseType === "spiral") {
+        await spiralTraverse(matrix);
+    } else {
+        await zigzagTraverse(matrix);
+    }
 }
 
 async function verticalTraverse(matrix) {
@@ -20,7 +19,6 @@ async function verticalTraverse(matrix) {
     let currentNum = 0;
     let isGoingDown = true;
     while (col <= endCol) {
-        // console.log([row, col]);
         await writeMatrixCell(matrix[row][col], currentNum++);
         if (isGoingDown) {
             if (row === endRow) {
@@ -102,11 +100,6 @@ async function spiralTraverse(matrix) {
     }
 }
 
-// zigzagTraverse helper
-function isNotOutOfRange(row, col, width, height) {
-	return row <= height && row >= 0 && col <= width && col >= 0;
-}
-
 async function zigzagTraverse(matrix) {
     const width = matrix[0].length - 1;
 	const height = matrix.length - 1;
@@ -138,14 +131,20 @@ async function zigzagTraverse(matrix) {
 	}
 }
 
-export default async function traverseAlgorithm(traverseType, matrix) {
-    if (traverseType === "vertical") {
-        await verticalTraverse(matrix);
-    } else if (traverseType === "horizontal") {
-        await horizontalTraverse(matrix);
-    } else if (traverseType === "spiral") {
-        await spiralTraverse(matrix);
-    } else {
-        await zigzagTraverse(matrix);
-    }
+// zigzagTraverse helper
+function isNotOutOfRange(row, col, width, height) {
+	return row <= height && row >= 0 && col <= width && col >= 0;
+}
+
+async function writeMatrixCell(cellContainer, number) {
+    const cell = cellContainer.current;
+    const cellSpan = cell.querySelector("span");
+    cell.classList.add("marked");
+    await sleep(20);
+    cellSpan.textContent = String(number);
+    sleep(500).then(() => cell.classList.remove("marked"));
+}
+
+function sleep(ms=0) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
